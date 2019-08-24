@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <meta Http-Equiv="pragma" content="no-cache" />
+    <meta Http-Equiv="Cache-Control" content="no-store, must-revalidate" />
+    <meta Http-Equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
+    <meta Http-Equiv="expires" content="0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <%if(typeof(VUE_APP_ENV)!='undefined'){%>
+    <meta name="APP_ENV" content="<%= VUE_APP_ENV %>">
+    <meta name="APP_BUILD_TIME" content="<%= VUE_APP_BUILD_TIME %>">
+    <%}%>
+
+    <title>app-pc</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
