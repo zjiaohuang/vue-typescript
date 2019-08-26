@@ -1,22 +1,24 @@
 import Vue from 'vue'
-import { AxiosInstance, AxiosResponse, AxiosPromise } from 'axios';
+import { MyPromise } from '@/api/BaseRequestResult';
+import { AxiosInstance } from 'axios'
 
+/**
+ * Http请求接口
+ */
 interface RequestHttp {
   /**
    * post请求
    */
-  post<T = any>(url: string, data: object, options: object | null): AxiosPromise<T>;
+  post<T = any>(url: string, data: object, options: object | null): MyPromise<T>;
 
   /**
    * get请求
-   *
-   * @template T BaseRequestResult<any>
    * @param {string} url 请求地址
    * @param {object} data 请求参数
    * @param {(object | null)} options axios参数
-   * @returns {AxiosPromise<T>} 返回类型AxiosPromise<BaseRequestResult<any>>
+   * @returns {MyPromise<T>} 返回类型MyPromise<T>
    */
-  get<T = any>(url: string, data: object, options: object | null): AxiosPromise<T>
+  get<T = any>(url: string, data: object, options: object | null): MyPromise<T>
 }
 
 // 声明vue实例属性声明http请求属性
@@ -28,8 +30,8 @@ declare module 'vue/types/vue' {
     $axios: AxiosInstance;
 
     /**
-     * http请求
-     */
+   * Http请求接口
+   */
     $http: RequestHttp;
 
     go(url: string): void

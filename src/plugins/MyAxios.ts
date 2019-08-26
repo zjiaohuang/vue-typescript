@@ -1,5 +1,5 @@
-import axios, { AxiosResponse, AxiosPromise } from 'axios'
-import { BaseRequestResult } from '@/api/BaseRequestResult'
+import axios from 'axios'
+import { BaseRequestResult, MyPromise } from '@/api/BaseRequestResult'
 // import {appAdapter} from './axios/app'
 
 // 改成调用原生请求服务端,增加环境判断
@@ -94,7 +94,7 @@ const myAxios: any = {
 
     Vue.prototype.$axios = service
     Vue.prototype.$http = {
-      get<T = any>(url: string, data: JSON, options = {}): AxiosPromise<T> {
+      get<T = any>(url: string, data: JSON, options = {}): MyPromise<T> {
         let _opt: any = {
           ...options,
           method: 'get',
@@ -103,7 +103,7 @@ const myAxios: any = {
         }
         return service(_opt)
       },
-      post<T = any>(url: string, data: JSON, options = {}): AxiosPromise<T> {
+      post<T = any>(url: string, data: JSON, options = {}): MyPromise<T> {
         let _opt: any = {
           ...options,
           method: 'post',

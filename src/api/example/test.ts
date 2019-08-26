@@ -1,11 +1,10 @@
 import Vue from 'vue'
-import { BaseRequestResult } from '../BaseRequestResult'
-import { AxiosPromise } from 'axios'
+import { MyPromise } from '../BaseRequestResult'
 
 /**
  * 测试VO
  */
-export interface TestVo {
+interface TestVo {
   /**
    * 姓名
    */
@@ -13,10 +12,10 @@ export interface TestVo {
   age: string
 }
 
-export interface TestDto {
+interface TestDto {
   xx: string | null
 }
 
-export function reqFun(component: Vue, param: TestDto): AxiosPromise<BaseRequestResult<TestVo>> {
-  return component.$http.get<BaseRequestResult<TestVo>>('/test/queryById?id=111', param, null)
+export function reqFun(component: Vue, param: TestDto): MyPromise<TestVo> {
+  return component.$http.get<TestVo>('/test/queryById?id=111', param, null)
 }
