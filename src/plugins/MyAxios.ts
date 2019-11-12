@@ -69,7 +69,7 @@ const myAxios: any = {
       let requestResult = new BaseRequestResult(responseData.code, responseData.data)
       response.data = requestResult
 
-      myAxios.reqCount++
+      myAxios.reqCount--
       return response
     }, error => {
       // closeLoadingToast()

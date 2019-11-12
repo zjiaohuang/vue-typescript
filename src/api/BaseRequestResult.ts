@@ -3,7 +3,7 @@ import { AxiosPromise } from 'axios'
 /**
  * 网络请求结果基类
  */
-export class BaseRequestResult<T> {
+export class BaseRequestResult<T = any> {
   public static STATUS_CODE_ERROR: number = -1
   public static STATUS_CODE_DEFAULT: number = 0
 
@@ -12,6 +12,13 @@ export class BaseRequestResult<T> {
    */
   result!: T
   code: number = BaseRequestResult.STATUS_CODE_DEFAULT
+
+  /**
+   * 创建网络请求结果基类
+   * @param {boolean} success
+   * @param {unknown} resultJson
+   * @memberof BaseRequestResult
+   */
   constructor(private success: boolean, private resultJson: unknown) {
     this.success = success
     this.result = <T>resultJson
