@@ -19,6 +19,15 @@ const genUrlLoaderOptions = dir => {
   }
 }
 
+const isProduction = process.env.NODE_ENV === 'production'
+
+const cdn = {
+  js: [
+    'https://cdn.bootcss.com/vue/2.6.10/vue.runtime.min.js',
+    'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js'
+  ]
+}
+
 // vue-cli3指南             https://cli.vuejs.org/zh/guide/
 // webpack-chain的API地址   https://github.com/neutrinojs/webpack-chain#getting-started
 // vue-cli3配置源码         https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-service/lib/config
@@ -31,12 +40,12 @@ module.exports = {
   productionSourceMap: false,
   parallel: require('os').cpus().length > 1,
 
-  configureWebpack: {
-    devtool: 'source-map', // 保证源码正确加载
-    optimization: {
-      minimizer: [
-        new OptimizeCSSAssetsPlugin()
-      ]
+  configureWebpack: config => {
+    if (isProduction) {
+      config.externals = {
+        'vue': 'Vue',
+        'vue-router': 'VueRouter'
+      }
     }
   },
 
@@ -88,16 +97,13 @@ module.exports = {
                 test: /[\\/]node_modules[\\/]_?element-ui(.*)/,
                 chunks: 'initial'
               }
-              // ,vueClassComponent: {
-              //   name: 'chunk-class-component',
-              //   priority: 1,
-              //   test: /[\\/]node_modules[\\/]_?vue-class-component(.*)/,
-              //   enforce: true,
-              //   chunks: 'all'
-              // }
             }
           })
-        // config.optimization.runtimeChunk('multiple')
+        config.plugin('html')
+          .tap(args => {
+            args[0].cdn = cdn
+            return args
+          })
       }
     )
   },
