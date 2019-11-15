@@ -25,6 +25,7 @@ export default class ExampleIndex extends Vue {
 
   @Emit('test1Change')
   onBtnClick(): string {
+    let a = 1
     this.$alert('这是一段内容', '标题名称', {
       confirmButtonText: '确定',
       callback: action => {

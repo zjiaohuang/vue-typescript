@@ -3,5 +3,3 @@ declare var window: Window
 declare var document: Document
 
 
-// interface THREE extends Window {}
-declare module 'vue-navigation'

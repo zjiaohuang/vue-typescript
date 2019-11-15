@@ -10,8 +10,8 @@ import {
   // Submenu,
   // MenuItem,
   // MenuItemGroup,
-  // Input,
-  // InputNumber,
+  Input,
+  InputNumber,
   // Radio,
   // RadioGroup,
   // RadioButton,
@@ -30,11 +30,11 @@ import {
   // TimeSelect,
   // TimePicker,
   // Popover,
-  // Tooltip,
+  Tooltip,
   // Breadcrumb,
   // BreadcrumbItem,
-  // Form,
-  // FormItem,
+  Form,
+  FormItem,
   // Tabs,
   // TabPane,
   // Tag,
@@ -89,8 +89,8 @@ import {
 // Vue.use(Submenu)
 // Vue.use(MenuItem)
 // Vue.use(MenuItemGroup)
-// Vue.use(Input)
-// Vue.use(InputNumber)
+Vue.use(Input)
+Vue.use(InputNumber)
 // Vue.use(Radio)
 // Vue.use(RadioGroup)
 // Vue.use(RadioButton)
@@ -109,11 +109,11 @@ Vue.use(Button)
 // Vue.use(TimeSelect)
 // Vue.use(TimePicker)
 // Vue.use(Popover)
-// Vue.use(Tooltip)
+Vue.use(Tooltip)
 // Vue.use(Breadcrumb)
 // Vue.use(BreadcrumbItem)
-// Vue.use(Form)
-// Vue.use(FormItem)
+Vue.use(Form)
+Vue.use(FormItem)
 // Vue.use(Tabs)
 // Vue.use(TabPane)
 // Vue.use(Tag)

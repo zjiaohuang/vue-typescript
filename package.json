@@ -15,6 +15,7 @@
     "core-js": "^2.6.5",
     "crypto-js": "^3.1.9-1",
     "element-ui": "^2.4.5",
+    "typescript": "3.4.3",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-navigation": "^1.1.4",
@@ -35,10 +36,11 @@
     "dayjs": "^1.8.15",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "script-ext-html-webpack-plugin": "^2.1.4",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "typescript": "^3.4.3",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10"
   },
@@ -67,7 +69,7 @@
       "vue/prop-name-casing": 1,
       "vue/html-indent": "off",
       "vue/multiline-html-element-content-newline": "off",
-      "prefer-promise-reject-errors":0
+      "prefer-promise-reject-errors": 0
     },
     "parserOptions": {
       "parser": "@typescript-eslint/parser"

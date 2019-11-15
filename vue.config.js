@@ -69,7 +69,6 @@ module.exports = {
     // 设置路径别名
     config.resolve.alias
       .set('@', path.resolve('src'))
-      .set('~', resolve('public'))
     // .set('myui', resolve('src/common/components'))
 
     // 替换svg规则loader,老规则只有file-loader,修改为如果小于4k放到js里面
@@ -79,8 +78,24 @@ module.exports = {
       .loader('url-loader')
       .options(genUrlLoaderOptions('img'))
 
+    // https://webpack.js.org/configuration/devtool/#development
+    config.when(process.env.NODE_ENV === 'development',
+      config => config.devtool('cheap-module-source-map')
+    )
+
     config.when(process.env.NODE_ENV !== 'development',
       config => {
+        // 将运行时js放到html中，每次新增功能运行时js都会变化,有效增加app.js缓存
+        config
+          .plugin('ScriptExtHtmlWebpackPlugin')
+          .after('html')
+          .use('script-ext-html-webpack-plugin', [{
+            // `runtime` must same as runtimeChunk name. default is `runtime`
+            inline: /runtime\..*\.js$/
+          }])
+          .end()
+
+        // 配置打包分割策略
         config
           .optimization.splitChunks({
             chunks: 'all',
@@ -99,6 +114,11 @@ module.exports = {
               }
             }
           })
+
+        // 配置将运行时manifest单独提取到一个js中，配合script-ext-html-webpack-plugin将manifest
+        config.optimization.runtimeChunk('single')
+
+        // 将cdn链接放到htmlplugin配置中
         config.plugin('html')
           .tap(args => {
             args[0].cdn = cdn
