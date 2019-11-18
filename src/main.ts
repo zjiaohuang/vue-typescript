@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './routers'
-import store from './vuex/store'
+import store from './store'
 
 import './plugins/ElementUI'
 import Navigation from 'vue-navigation'

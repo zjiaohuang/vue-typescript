@@ -6,3 +6,4 @@ declare module '*.vue' {
 
 // TODO 如果vue-navigation有typescript声明移除这个声明
 declare module 'vue-navigation'
+declare module 'nprogress'
