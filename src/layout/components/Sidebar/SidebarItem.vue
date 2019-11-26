@@ -1,95 +1,93 @@
 <template>
-  <div v-if="!item.hidden" class="menu-wrapper">
-    <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
-      <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
-        </el-menu-item>
-      </app-link>
-    </template>
-
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+  <!--如果没有根元素包裹父组件for循环时会出现递归调用栈溢出问题，知其然不知其所以然，先这样吧-->
+  <div class="menu-wrapper">
+    <app-link
+      v-if="hasOneShowingChild(item.children, item)"
+      :to="resolvePath(onlyOneChild)"
+    >
+      <el-menu-item :index="item.id" :class="{'submenu-title-noDropdown':!isNest}">
+        <i class="el-icon-location" v-if="onlyOneChild.icon" v-once></i>
+        <span slot="title">{{onlyOneChild.name}}</span>
+      </el-menu-item>
+    </app-link>
+    <el-submenu
+      v-else
+      ref="subMenu"
+      :index="resolvePath(item).path"
+      popper-append-to-body
+    >
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
+        <i class="el-icon-location" v-if="item.icon" v-once></i>
+        <span slot="title">{{item.name}}</span>
       </template>
       <sidebar-item
         v-for="child in item.children"
         :key="child.path"
-        :is-nest="true"
         :item="child"
-        :base-path="resolvePath(child.path)"
+        :base-path="basePath"
+        :is-nest="true"
         class="nest-menu"
       />
     </el-submenu>
   </div>
 </template>
 
-<script>
-import path from 'path'
-import { isExternal } from '@/utils/validate'
-import Item from './Item'
-import AppLink from './Link'
-import FixiOSBug from './FixiOSBug'
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator'
+import appLink from './Link.vue'
 
-export default {
-  name: 'SidebarItem',
-  components: { Item, AppLink },
-  mixins: [FixiOSBug],
-  props: {
-    // route object
-    item: {
-      type: Object,
-      required: true
-    },
-    isNest: {
-      type: Boolean,
-      default: false
-    },
-    basePath: {
-      type: String,
-      default: ''
+/**
+ * 判断是否是外部链接
+ */
+function isExternal(path: string) {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}
+
+@Component({
+  components: {
+    appLink
+  }
+})
+export default class SidebarItem extends Vue {
+  // 路由
+  @Prop({ required: true }) item: any
+  // 根目录
+  @Prop({ default: '' }) basePath: any
+  // 是否是子菜单
+  @Prop({ default: false }) isNest: any
+
+  // 没有子菜单
+  onlyOneChild: any = null
+
+  /**
+  判断是否有子菜单
+   */
+  hasOneShowingChild(children = [], parent: any) {
+    if (children.length === 0) {
+      this.onlyOneChild = parent
+      return true
     }
-  },
-  data() {
-    // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
-    // TODO: refactor with render function
-    this.onlyOneChild = null
-    return {}
-  },
-  methods: {
-    hasOneShowingChild(children = [], parent) {
-      const showingChildren = children.filter(item => {
-        if (item.hidden) {
-          return false
-        } else {
-          // Temp set(will be used if only has one showing child)
-          this.onlyOneChild = item
-          return true
-        }
-      })
+    return false
+  }
 
-      // When there is only one child router, the child router is displayed by default
-      if (showingChildren.length === 1) {
-        return true
-      }
+  /**
+   * 处理菜单路径
+   */
+  resolvePath(route: any): { [key: string]: any } {
+    let result: { [key: string]: any } = {}
+    result.id = route.id
 
-      // Show parent if there are no child router to display
-      if (showingChildren.length === 0) {
-        this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
-        return true
-      }
-
-      return false
-    },
-    resolvePath(routePath) {
-      if (isExternal(routePath)) {
-        return routePath
-      }
-      if (isExternal(this.basePath)) {
-        return this.basePath
-      }
-      return path.resolve(this.basePath, routePath)
+    if (!route.path) {
+      result.path = route.id
+      return result
     }
+    result.path = route.path
+    if (isExternal(route.path)) {
+      result.external = true
+    } else {
+      result.external = false
+    }
+    return result
   }
 }
 </script>

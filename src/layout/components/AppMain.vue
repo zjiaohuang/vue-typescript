@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 @Component
-export default class App extends Vue {
+export default class AppMain extends Vue {
   get cachedViews() {
     // return this.$store.state.tagsView.cachedViews
     return []

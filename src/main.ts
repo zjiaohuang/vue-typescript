@@ -3,12 +3,16 @@ import App from './App.vue'
 import router from './routers'
 import store from './store'
 
-import './plugins/ElementUI'
+// import './plugins/ElementUI'
+import Element from 'element-ui'
 import Navigation from 'vue-navigation'
 import myAxios from './plugins/MyAxios'
 
 Vue.config.productionTip = false
 
+Vue.use(Element, {
+  size: 'medium' // set element-ui default size
+})
 Vue.use(myAxios)
 Vue.use(Navigation, {
   router,
@@ -24,7 +28,7 @@ Vue.mixin({
     back(n = -1) {
       this.$router.go(n)
     },
-    replace(url) {
+    doReplace(url) {
       this.$router.replace(url)
     }
   }

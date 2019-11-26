@@ -2,7 +2,6 @@
 
 ## 免费CDN
 -  https://www.bootcdn.cn/
-
 - https://cdn.jsdelivr.net/
 
 ## vue各个版本区别
@@ -11,8 +10,8 @@
 | :---------------------------- | :----------------- | :--------------------------- | :------------------------- | ---------------------- |
 | **完整版**                    | vue.js             | vue.common.js                | vue.esm.js                 | vue.esm.browser.js     |
 | **只包含运行时版**            | vue.runtime.js     | vue.runtime.common.js        | vue.runtime.esm.js         | -                      |
-| **完整版 (生产环境)**         | vue.min.js         | -                            | -                          | vue.esm.browser.min.js |
-| **只包含运行时版 (生产环境)** | vue.runtime.min.js | -                            | -                          | -                      |
+| **完整版(生产环境)**          | vue.min.js         | -                            | -                          | vue.esm.browser.min.js |
+| **只包含运行时版(生产环境)**   | vue.runtime.min.js | -                            | -                          | -                      |
 
 ### 术语
 

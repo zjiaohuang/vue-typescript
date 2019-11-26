@@ -79,9 +79,9 @@ module.exports = {
       .options(genUrlLoaderOptions('img'))
 
     // https://webpack.js.org/configuration/devtool/#development
-    config.when(process.env.NODE_ENV === 'development',
-      config => config.devtool('cheap-module-source-map')
-    )
+    // config.when(process.env.NODE_ENV === 'development',
+    //   config => config.devtool('cheap-module-source-map')
+    // )
 
     config.when(process.env.NODE_ENV !== 'development',
       config => {
@@ -134,6 +134,7 @@ module.exports = {
         'resolve url': true,
         'import': [
           // 所有vue页面可以直接使用theme.styl变量
+          '~@/assets/stylus/variables.styl'
         ]
       }
     }

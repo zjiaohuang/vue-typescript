@@ -1,11 +1,13 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router, { Route } from 'vue-router'
+
 import Layout from '../layout/index.vue'
+import intercept from './intercept'
 
 Vue.use(Router)
 
 const router = new Router({
-  scrollBehavior: (to, from) => ({ x: 0, y: 0 }),
+  scrollBehavior: (to: Route, from: Route) => ({ x: 0, y: 0 }),
   routes: [{
     path: '/404',
     name: '404',
@@ -18,5 +20,8 @@ const router = new Router({
     component: Layout
   }]
 })
+
+router.beforeEach(intercept.routerBeforeEach)
+router.afterEach(intercept.routerAfterEach)
 
 export default router

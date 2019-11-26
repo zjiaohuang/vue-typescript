@@ -3,14 +3,14 @@
     :class="classObj"
     class="app-wrapper"
   >
-    <!-- <sidebar class="sidebar-container" /> -->
+    <sidebar class="sidebar-container" />
     <div
       :class="{hasTagsView:needTagsView}"
       class="main-container"
     >
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-        <tags-view v-if="needTagsView" />
+        <!-- <tags-view v-if="needTagsView" /> -->
       </div>
       <app-main />
       <!-- <right-panel v-if="showSettings">
@@ -22,19 +22,22 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppMain } from './components'
-import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
+import { AppMain, Sidebar, Navbar } from './components'
+import { State } from 'vuex-class'
 
 @Component({
   name: 'Layout',
   components: {
-    AppMain
-    // Sidebar
+    AppMain,
+    Sidebar,
+    Navbar
   }
 })
 export default class Layout extends Vue {
   @State(state => state.app.sidebar) sidebar: any
   @State(state => state.app.device) device: any
+  @State(state => state.settings.needTagsView) needTagsView: any
+  @State(state => state.settings.fixedHeader) fixedHeader: any
 
   get classObj() {
     return {
@@ -74,7 +77,7 @@ export default class Layout extends Vue {
   top: 0;
   right: 0;
   z-index: 9;
-  // width: calc(100% - #{$sideBarWidth});
+  width 'calc(100vh - %s)' % $sideBarWidth
   transition: width 0.28s;
 }
 

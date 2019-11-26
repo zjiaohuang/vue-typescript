@@ -74,16 +74,16 @@ import { Component, Vue, Provide } from 'vue-property-decorator'
 
 @Component
 export default class EroorPage extends Vue {
-  @Provide() passwordType: string = 'password'
-  @Provide() capsTooltip: boolean = false
-  @Provide() loading: boolean = false
+  private passwordType: string = 'password'
+  private capsTooltip: boolean = false
+  private loading: boolean = false
 
-  @Provide() loginForm: any = {
+  private loginForm: any = {
     username: 'admin',
     password: '111111'
   }
 
-  @Provide() loginRules: any = {
+  private loginRules: any = {
     username: [
       {
         required: true,
@@ -98,10 +98,6 @@ export default class EroorPage extends Vue {
         validator: this._checkPassword
       }
     ]
-  }
-
-  created() {
-    console.log('login')
   }
 
   _checkUsername(rule: any, value: string, callback: Function) {
@@ -140,7 +136,9 @@ export default class EroorPage extends Vue {
   }
 
   onHandleLogin() {
-    console.log(123)
+    this.$store.commit('user/SET_TOKEN', 1)
+    let redirect: any = this.$route.query['redirect']
+    this.$router.push({ path: redirect || '/' })
   }
 }
 </script>
