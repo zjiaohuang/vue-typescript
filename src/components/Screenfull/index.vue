@@ -16,7 +16,7 @@ export default class Screenfull extends Vue {
   private screenfull: any = null
 
   mounted() {
-    import(/* webpackChunkName: "screenfull" */ 'screenfull').then(
+    import(/* webpackChunkName: "chunk-screenfull" */ 'screenfull').then(
       (screenfull: any) => {
         this.screenfull = screenfull.default
       }

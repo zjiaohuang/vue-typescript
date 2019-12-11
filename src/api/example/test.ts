@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { MyPromise } from '../BaseRequestResult'
+import { MyPromise } from '@/api/BaseRequestResult'
 
 /**
  * 测试VO

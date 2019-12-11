@@ -3,21 +3,26 @@ import { IUserState, IRootState } from '../moduleType'
 
 import storageUtil from '@/utils/storageUtil'
 
-const SET_TOKEN: string = 'SET_TOKEN'
+export const SET_TOKEN: string = 'SET_TOKEN'
 
 const state: IUserState = {
   token: '',
-  userInfo: {}
+  userInfo: {
+    name: ''
+  }
 }
 
 const mutations: MutationTree<IUserState> = {
-  [SET_TOKEN]: (state, token) => {
+  [SET_TOKEN]: (state, token: string) => {
     state.token = token
-    storageUtil.sessionSet(storageUtil.SESSION_KEY.token, token)
+    storageUtil.sessionSet('token', token)
   }
 }
 
 const actions: ActionTree<IUserState, IRootState> = {
+  setToken({ commit, state, dispatch }, token: string) {
+    commit(SET_TOKEN, token)
+  },
   logout({ commit, state, dispatch }) {
     // TODO 调用退出接口后清除state
     commit(SET_TOKEN, null)

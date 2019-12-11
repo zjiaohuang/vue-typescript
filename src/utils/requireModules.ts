@@ -1,10 +1,10 @@
 /**
- * 动态导入制定目录下所有文件
+ * 动态导入指定目录下所有文件
  * @export
- * @param {*} modulesFiles 模块下所有文件
+ * @param {*} modulesFiles webpack已读取指定目录文件
  * @returns {*}
  */
-export function requireModels(modulesFiles: any): any {
+export function requireModels(modulesFiles: any): { [key: string]: any } {
   let defaultMap: { [key: string]: any } = {}
 
   // you do not need `import app from './modules/app'`

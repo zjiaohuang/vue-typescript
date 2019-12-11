@@ -4,20 +4,32 @@ import Router, { Route } from 'vue-router'
 import Layout from '../layout/index.vue'
 import intercept from './intercept'
 
+import routerMap from './routerMap'
+
+routerMap.Layout = Layout
+routerMap['404'] = () => import(/* webpackChunkName: "404" */ '../views/404.vue')
+
 Vue.use(Router)
 
 const router = new Router({
   scrollBehavior: (to: Route, from: Route) => ({ x: 0, y: 0 }),
   routes: [{
-    path: '/404',
-    name: '404',
-    component: () => import(/* webpackChunkName: "404" */ '../views/404.vue')
-  }, {
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '../views/login/index.vue')
   }, {
     path: '/',
-    component: Layout
+    component: Layout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+      name: 'dashboard',
+      meta: { title: '首页', icon: 'dashboard' }
+    }]
+  }, {
+    path: '/demo',
+    component: Layout,
+    meta: { title: '异常' }
   }]
 })
 

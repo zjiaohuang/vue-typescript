@@ -3,6 +3,10 @@ import Vue from 'vue'
 declare global {
   // window声明事件总线属性
   interface Window {
-    eventBus: Vue
+    eventBus: Vue,
+    /**
+     * 富文本编辑器
+     */
+    tinymce:any
   }
 }

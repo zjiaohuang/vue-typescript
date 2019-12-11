@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-container" @click="doclick">
     404
   </div>
 </template>
@@ -9,8 +9,8 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class EroorPage extends Vue {
-  created() {
-    console.log(1234)
+  doclick() {
+    this.$router.push('/')
   }
 }
 </script>

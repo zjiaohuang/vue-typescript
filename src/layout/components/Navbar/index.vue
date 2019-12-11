@@ -19,7 +19,7 @@
           class="right-menu-item"
         />
 
-        <!-- <error-log class="errLog-container right-menu-item hover-effect" /> -->
+        <error-log class="errLog-container right-menu-item hover-effect" />
 
         <screenfull
           id="screenfull"
@@ -40,6 +40,7 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
+          <main-guid></main-guid>
           <router-link to="/">
             <el-dropdown-item>个人中心</el-dropdown-item>
           </router-link>
@@ -63,14 +64,18 @@ import storageUtil from '@/utils/storageUtil'
 import Hamburger from './Hamburger/index.vue'
 import Breadcrumb from './Breadcrumb/index.vue'
 import HeaderSearch from './HeaderSearch/index.vue'
+import MainGuid from '../MainGuide/index.vue'
 import screenfull from '@/components/Screenfull/index.vue'
+import ErrorLog from '@/components/ErrorLog/index.vue'
 
 @Component({
   components: {
     Hamburger,
     Breadcrumb,
     HeaderSearch,
-    screenfull
+    MainGuid,
+    screenfull,
+    ErrorLog
   }
 })
 export default class Navbar extends Vue {
@@ -95,12 +100,7 @@ export default class Navbar extends Vue {
 
   async doLogout() {
     await this.$store.dispatch('user/logout')
-    let navigation = this.$store.state.navigation
-    if (navigation && navigation.routes) {
-      this.$router.go(0 - (navigation.routes.length - 1))
-    } else {
-      this.$router.replace('/login')
-    }
+    this.$router.push('/login')
     this.$message('已退出登录')
   }
 }

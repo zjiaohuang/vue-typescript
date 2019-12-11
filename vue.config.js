@@ -69,6 +69,7 @@ module.exports = {
     // 设置路径别名
     config.resolve.alias
       .set('@', path.resolve('src'))
+      .set('_c', path.resolve('src/components'))
     // .set('myui', resolve('src/common/components'))
 
     // 替换svg规则loader,老规则只有file-loader,修改为如果小于4k放到js里面

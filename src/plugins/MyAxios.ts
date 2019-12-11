@@ -1,11 +1,12 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
+import { PluginObject } from 'vue'
 import { BaseRequestResult, MyPromise } from '@/api/BaseRequestResult'
 // import {appAdapter} from './axios/app'
 
 // 改成调用原生请求服务端,增加环境判断
 // axios.defaults.adapter = appAdapter
 
-const myAxios: any = {
+const myAxios: PluginObject<any> = {
   reqCount: 0,
   install(Vue: any, option: any) {
     let axiosDefualtOpts = {
@@ -22,7 +23,7 @@ const myAxios: any = {
       ...option
     }
 
-    const service = axios.create(axiosDefualtOpts)
+    const service: AxiosInstance = axios.create(axiosDefualtOpts)
 
     /**
      * 配置请求拦截

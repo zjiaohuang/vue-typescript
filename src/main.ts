@@ -1,12 +1,16 @@
 import Vue from 'vue'
+import Navigation from 'vue-navigation'
+import { RawLocation } from 'vue-router'
+
 import App from './App.vue'
 import router from './routers'
 import store from './store'
+import myAxios from './plugins/MyAxios'
+
+import './utils/error-log'
 
 // import './plugins/ElementUI'
 import Element from 'element-ui'
-import Navigation from 'vue-navigation'
-import myAxios from './plugins/MyAxios'
 
 Vue.config.productionTip = false
 
@@ -22,14 +26,19 @@ Vue.use(Navigation, {
 
 Vue.mixin({
   methods: {
-    go(url) {
+    doPush(url: RawLocation) {
+      // this.$router.push(url).catch(() => {
+
+      // })
       this.$router.push(url)
     },
-    back(n = -1) {
+    doBack(n: number = -1) {
       this.$router.go(n)
     },
-    doReplace(url) {
-      this.$router.replace(url)
+    doReplace(url: RawLocation) {
+      this.$router.replace(url).catch(() => {
+
+      })
     }
   }
 })

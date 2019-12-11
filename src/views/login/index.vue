@@ -71,6 +71,7 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator'
+import routerMap from '@/routers/routerMap'
 
 @Component
 export default class EroorPage extends Vue {
@@ -138,7 +139,24 @@ export default class EroorPage extends Vue {
   onHandleLogin() {
     this.$store.commit('user/SET_TOKEN', 1)
     let redirect: any = this.$route.query['redirect']
-    this.$router.push({ path: redirect || '/' })
+
+    this.$router.addRoutes([
+      {
+        path: '/demo',
+        component: routerMap.Layout,
+        redirect: '/dashboard',
+        children: [
+          {
+            path: '404',
+            component: routerMap['404'],
+            name: '404',
+            meta: { title: '404', icon: 'error' }
+          }
+        ]
+      }
+    ])
+
+    this.doPush(redirect || '/')
   }
 }
 </script>

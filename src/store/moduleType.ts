@@ -4,7 +4,22 @@ import { Module } from 'vuex'
  * 根状态接口
  */
 export interface IRootState {
-
+  /**
+   * 系统状态
+   */
+  app:IAppState,
+  /**
+   * 配置状态
+   */
+  settings:ISettingsState,
+  /**
+   * 用户状态
+   */
+  user:IUserState,
+  /**
+   * 错误信息状态
+   */
+  errorLog:IErrorState
 }
 
 /**
@@ -41,7 +56,7 @@ export interface IAppState extends IModuleState {
     withoutAnimation: boolean
   }
   language: string
-  size: string
+  size: 'medium' | 'small'
 }
 
 // 设置模块
@@ -51,8 +66,30 @@ export interface ISettingsState extends IModuleState {
   fixedHeader: boolean
 }
 
-// 用户信息模块状态
+/**
+ * 用户信息状态中用户信息
+ */
+interface IUserInfo {
+  name:string
+}
+
+/**
+ * 用户信息模块状态
+ */
 export interface IUserState extends IModuleState {
+  /**
+   * token信息
+   */
   token: string,
-  userInfo: any
+  /**
+   *  用户信息
+   */
+  userInfo: IUserInfo
+}
+
+/**
+ * 错误日志状态
+ */
+export interface IErrorState extends IModuleState {
+  logs: Array<any>
 }

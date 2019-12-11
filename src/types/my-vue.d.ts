@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { MyPromise } from '@/api/BaseRequestResult';
 import { AxiosInstance } from 'axios'
+import { RawLocation } from 'vue-router'
 
 /**
  * Http请求接口
@@ -30,10 +31,13 @@ declare module 'vue/types/vue' {
     $axios: AxiosInstance;
 
     /**
-   * Http请求接口
-   */
+    * Http请求接口
+    */
     $http: RequestHttp;
 
-    go(url: string): void
+    /**
+     * 页面跳转
+     */
+    doPush(url: RawLocation): void
   }
 }

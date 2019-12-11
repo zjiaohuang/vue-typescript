@@ -43,7 +43,7 @@ export default class Sidebar extends Vue {
         {
           id: '3',
           name: '首页',
-          path: '/login'
+          path: '/demo/404'
         }
       ]
     }

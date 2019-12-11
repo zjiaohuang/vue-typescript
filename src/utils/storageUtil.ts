@@ -1,22 +1,3 @@
-interface ILocalKey { [key: string]: string }
-interface ISeesinKey {
-  token: string
-}
-
-/***
- * localstorage存储key
- */
-const LOCL_KEY: ILocalKey = {
-
-}
-
-/**
- * sessionstorage存储key
- */
-const SESSION_KEY: ISeesinKey = {
-  token: 'token'
-}
-
 function obj2str(val: any): string {
   return typeof val === 'object' ? JSON.stringify(val) : val
 }
@@ -34,49 +15,40 @@ function str2obj(val: string | null): any {
   }
 }
 
-interface storageUtil {
-  /**
-   * localstorage存储key
-   */
-  LOCL_KEY: ILocalKey,
-  /**
-   * sessionstorage存储key
-   */
-  SESSION_KEY: ISeesinKey,
+interface IStorageUtil {
   /**
    * 保存localstorage
-   * @param {string} key 存储key
-   * @param {*} val 存储值
-   * @param {boolean} [encrypt=false] 是否加密
+   * @param {localKey} key 取值参见types/global.d.ts
+   * @param {*} val
+   * @param {boolean} [encrypt]
+   * @memberof storageUtil
    */
-  localSet(key: string, val: any, encrypt?: boolean): void,
+  localSet(key: localKey, val: any, encrypt?: boolean): void,
   /**
    * 从localstorage获取值
    * @param {string} key
    * @returns
    */
-  localGet(key: string): any | string | null,
+  localGet(key: localKey): any | string | null,
   /**
    * 保存值到sessionstorage
    * @param {string} key 存储key
    * @param {*} val 存储值
    * @param {boolean} [encrypt=false] 是否加密
    */
-  sessionSet(key: string, val: any, encrypt?: boolean): void,
+  sessionSet(key: sessionKey, val: any, encrypt?: boolean): void,
   /**
    * 从sessionstorage获取值
    * @param {string} key
    * @returns
    */
-  sessionGet(key: string): any | string | null,
+  sessionGet(key: sessionKey): any | string | null,
 
   sessionRemove(key: string): void
 }
 
-const storageUtil: storageUtil = {
-  LOCL_KEY,
-  SESSION_KEY,
-  localSet(key: string, val: any, encrypt: boolean = false): void {
+const storageUtil: IStorageUtil = {
+  localSet(key: localKey, val: any, encrypt: boolean = false): void {
     if (encrypt) {
       val = {
         isEncrypt: true,
@@ -85,7 +57,7 @@ const storageUtil: storageUtil = {
     }
     localStorage.setItem(key, obj2str(val))
   },
-  localGet(key: string): any | string | null {
+  localGet(key: localKey): any | string | null {
     let val: any | string | null = localStorage.getItem(key)
     val = str2obj(val)
     if (val.isEncrypt) {
@@ -94,13 +66,7 @@ const storageUtil: storageUtil = {
       return val
     }
   },
-  /**
-   * 保存localstorage
-   * @param {string} key 存储key
-   * @param {*} val 存储值
-   * @param {boolean} [encrypt=false] 是否加密
-   */
-  sessionSet(key: string, val: any, encrypt: boolean = false) {
+  sessionSet(key: sessionKey, val: any, encrypt: boolean = false) {
     if (!val) {
       sessionStorage.removeItem(key)
       return
@@ -113,13 +79,7 @@ const storageUtil: storageUtil = {
     }
     sessionStorage.setItem(key, obj2str(val))
   },
-
-  /**
-   * 从localstorage获取值
-   * @param {string} key
-   * @returns
-   */
-  sessionGet(key: string) {
+  sessionGet(key: sessionKey) {
     let val: any | string | null = sessionStorage.getItem(key)
     val = str2obj(val)
     if (val && val.isEncrypt) {
@@ -128,8 +88,7 @@ const storageUtil: storageUtil = {
       return val
     }
   },
-
-  sessionRemove(key: string) {
+  sessionRemove(key: sessionKey) {
     sessionStorage.removeItem(key)
   }
 }

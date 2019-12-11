@@ -3,20 +3,14 @@
     class="app-breadcrumb"
     separator="/"
   >
-    <transition-group name="breadcrumb">
-      <template v-for="(item,index) in levelList">
-        <span
-          v-if="item.redirect==='noRedirect'||index===levelList.length-1"
-          :key="item.path"
-          class="no-redirect"
-        >{{ item.meta.title }}</span>
-        <a
-          v-else
-          :key="item.path"
-          @click.prevent="handleLink(item)"
-        >{{ item.meta.title }}</a>
-      </template>
-    </transition-group>
+    <!-- <transition-group name="breadcrumb"> -->
+    <el-breadcrumb-item
+      v-for="(item) in levelList"
+      :key="item.path"
+    >
+      <span class="no-redirect">{{ item.meta.title }}</span>
+    </el-breadcrumb-item>
+    <!-- </transition-group> -->
   </el-breadcrumb>
 </template>
 
@@ -47,9 +41,9 @@ export default {
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
       const first = matched[0]
 
-      if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: '首页' } }].concat(matched)
-      }
+      // if (!this.isDashboard(first)) {
+      //   matched = [{ path: '/dashboard', meta: { title: '首页' } }].concat(matched)
+      // }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     },
