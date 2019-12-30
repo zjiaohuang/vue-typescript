@@ -55,7 +55,6 @@ export default {
       return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
     },
     pathCompile (path) {
-      // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = this.$route
       let toPath = pathToRegexp.compile(path)
       return toPath(params)

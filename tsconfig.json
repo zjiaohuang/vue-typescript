@@ -31,10 +31,11 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx", "src/store/getters.js"
+    "tests/**/*.tsx", "src/plugins/ElementUI.js"
   ],
   "exclude": [
     "node_modules"
   ],
-  "noImplicitAny": false
+  "noImplicitAny": false,
+  "strictPropertyInitialization": false
 }

@@ -38,6 +38,6 @@ declare module 'vue/types/vue' {
     /**
      * 页面跳转
      */
-    doPush(url: RawLocation): void
+    doPush(url: RawLocation): void;
   }
 }

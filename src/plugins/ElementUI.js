@@ -1,15 +1,16 @@
+// element ui中typescript的type未定义Scrollbar声明,所以这个文件是js
 import Vue from 'vue'
 import {
   // Pagination,
-  // Dialog,
+  Dialog,
   // Autocomplete,
-  // Dropdown,
-  // DropdownMenu,
-  // DropdownItem,
-  // Menu,
-  // Submenu,
-  // MenuItem,
-  // MenuItemGroup,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup,
   Input,
   InputNumber,
   // Radio,
@@ -19,9 +20,9 @@ import {
   // CheckboxButton,
   // CheckboxGroup,
   // Switch,
-  // Select,
-  // Option,
-  // OptionGroup,
+  Select,
+  Option,
+  OptionGroup,
   Button,
   // ButtonGroup,
   // Table,
@@ -31,8 +32,8 @@ import {
   // TimePicker,
   // Popover,
   Tooltip,
-  // Breadcrumb,
-  // BreadcrumbItem,
+  Breadcrumb,
+  BreadcrumbItem,
   Form,
   FormItem,
   // Tabs,
@@ -73,6 +74,7 @@ import {
   // Backtop,
   // PageHeader,
   // // CascaderPanel,
+  Scrollbar,
   Loading,
   MessageBox,
   Message,
@@ -80,15 +82,15 @@ import {
 } from 'element-ui'
 
 // Vue.use(Pagination)
-// Vue.use(Dialog)
+Vue.use(Dialog)
 // Vue.use(Autocomplete)
-// Vue.use(Dropdown)
-// Vue.use(DropdownMenu)
-// Vue.use(DropdownItem)
-// Vue.use(Menu)
-// Vue.use(Submenu)
-// Vue.use(MenuItem)
-// Vue.use(MenuItemGroup)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
 Vue.use(Input)
 Vue.use(InputNumber)
 // Vue.use(Radio)
@@ -98,9 +100,9 @@ Vue.use(InputNumber)
 // Vue.use(CheckboxButton)
 // Vue.use(CheckboxGroup)
 // Vue.use(Switch)
-// Vue.use(Select)
-// Vue.use(Option)
-// Vue.use(OptionGroup)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(OptionGroup)
 Vue.use(Button)
 // Vue.use(ButtonGroup)
 // Vue.use(Table)
@@ -110,8 +112,8 @@ Vue.use(Button)
 // Vue.use(TimePicker)
 // Vue.use(Popover)
 Vue.use(Tooltip)
-// Vue.use(Breadcrumb)
-// Vue.use(BreadcrumbItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 Vue.use(Form)
 Vue.use(FormItem)
 // Vue.use(Tabs)
@@ -152,8 +154,8 @@ Vue.use(FormItem)
 // Vue.use(Backtop)
 // Vue.use(PageHeader)
 // // Vue.use(CascaderPanel)
-
-// Vue.use(Loading.directive)
+Vue.use(Scrollbar)
+Vue.use(Loading.directive)
 
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$msgbox = MessageBox
