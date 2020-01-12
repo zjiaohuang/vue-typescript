@@ -1,4 +1,3 @@
-// element ui中typescript的type未定义Scrollbar声明,所以这个文件是js
 import Vue from 'vue'
 import {
   // Pagination,
@@ -74,7 +73,7 @@ import {
   // Backtop,
   // PageHeader,
   // // CascaderPanel,
-  Scrollbar,
+  // Scrollbar,
   Loading,
   MessageBox,
   Message,
@@ -154,7 +153,7 @@ Vue.use(FormItem)
 // Vue.use(Backtop)
 // Vue.use(PageHeader)
 // // Vue.use(CascaderPanel)
-Vue.use(Scrollbar)
+// Vue.use(Scrollbar)
 Vue.use(Loading.directive)
 
 Vue.prototype.$loading = Loading.service

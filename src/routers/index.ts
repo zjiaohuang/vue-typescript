@@ -25,6 +25,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
       name: 'dashboard',
       meta: { title: '首页', icon: 'dashboard' }
+    }, {
+      path: 'pdf',
+      name: 'pdf',
+      component: () => import('@/views/example/pdf.vue'),
+      meta: { title: 'pdf' }
     }]
   }, {
     path: '/demo',
