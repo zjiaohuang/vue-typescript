@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <i
-      class="el-icon-full-screen screenfull-svg"
-      @click.stop="click"
-    />
+  <div @click.stop="click">
+    <i v-if="!$slots.default" class="el-icon-full-screen screenfull-svg" />
+    <slot />
   </div>
 </template>
 

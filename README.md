@@ -335,6 +335,15 @@ export function reqFun(component: Vue, param: TestDto): MyPromise<TestVo> {
 
 - 向下传递的props
 - 祖先组件向所有子孙组件传递数据provide/inject
+- 事件总线
+```typescript
+// 数据触发
+window.eventBus.$emit('eventName', eventData)
+
+// 处理事件
+window.eventBus.$on('eventName', (eventData: any) => {
+})
+```
 
 ### sessionStorage和localstorage
 
@@ -357,3 +366,12 @@ declare type sessionKey = 'key' | 'token'
 ## Typescript注意事项
 
 ### 组件递归调用
+组件递归调用组件必须有名称否则编译会出现解析异常
+```
+@Component({
+  name: 'SidebarItem' // 组件名称很重要，光声明class名称不行
+})
+export default class SidebarItem extends Vue {
+
+}
+```

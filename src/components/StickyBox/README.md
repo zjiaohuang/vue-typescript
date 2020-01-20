@@ -21,4 +21,5 @@ Vue.component(StickyBox)
 #### gender Props
 |属性 | 说明 | 类型 | 默认值 | 备注 |
 |-----|-----|------|-------|------|
-
+|stickyTop|固定位置|number|0|-|
+|zIndex|图层index|number|100|-|

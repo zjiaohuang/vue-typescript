@@ -35,10 +35,11 @@ const cdn = {
 let OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = {
   publicPath: './',
+
   // assetsDir: assetsDir,
-  outputDir: process.env.outputDir,
   productionSourceMap: false,
-  parallel: require('os').cpus().length > 1,
+  lintOnSave: true,
+  assetsDir: './',
 
   configureWebpack: config => {
     if (isProduction) {
@@ -52,7 +53,6 @@ module.exports = {
   chainWebpack: config => {
     // 增加编译时间环境变量
     config.plugin('define').tap(args => {
-      console.log(process.env.VUE_APP_BASE_URL)
       args[0].VUE_APP_BUILD_TIME = '"' + days().format('YYYYMMDDHHmmss') + '"'
 
       if (args[0]['process.env'].VUE_APP_ENV) {
@@ -134,7 +134,6 @@ module.exports = {
       stylus: {
         'resolve url': true,
         'import': [
-          // 所有vue页面可以直接使用theme.styl变量
           '~@/assets/stylus/variables.styl'
         ]
       }
@@ -147,13 +146,11 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/test': {
+      '/api': {
         target: process.env.VUE_APP_BASE_URL,
         ws: true,
         changeOrigin: true
       }
     }
-  },
-
-  lintOnSave: true
+  }
 }

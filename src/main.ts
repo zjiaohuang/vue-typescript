@@ -43,6 +43,9 @@ Vue.mixin({
   }
 })
 
+// 接收处理全局事件使用
+window.eventBus = new Vue()
+
 new Vue({
   router,
   store,
