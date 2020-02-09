@@ -28,7 +28,7 @@ type ViewMode = 0 | 1 | 2 | 3
  */
 type ImageSmoothingQuality = 'low' | 'medium' | 'high'
 
-interface Data {
+export interface Data {
   x: number
   y: number
   width: number
@@ -38,7 +38,7 @@ interface Data {
   scaleY: number
 }
 
-interface CropperOption {
+export interface CropperOption {
   aspectRatio?: number
   autoCrop?: boolean
   autoCropArea?: number
