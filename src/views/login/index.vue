@@ -64,7 +64,8 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="onHandleLogin"
-      >登陆</el-button>
+      >登陆
+      </el-button>
     </el-form>
   </div>
 </template>

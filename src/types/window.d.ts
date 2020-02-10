@@ -7,10 +7,10 @@ declare global {
     /**
      * 富文本编辑器
      */
-    tinymce:any,
+    tinymce: any,
     /**
      * padjs页数变化回调函数
      */
-    pdfPageChange:any
+    pdfPageChange: ((currentPageNum: number, totalPageNum: number) => void)
   }
 }

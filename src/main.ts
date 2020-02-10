@@ -8,21 +8,23 @@ import store from './store'
 import myAxios from './plugins/MyAxios'
 
 import './utils/error-log'
+import './api/mock/index'
 
 // import './plugins/ElementUI'
 import Element from 'element-ui'
 
-Vue.config.productionTip = false
-
 Vue.use(Element, {
   size: 'medium' // set element-ui default size
 })
+
 Vue.use(myAxios)
 Vue.use(Navigation, {
   router,
   store,
   keyName: '_'
 })
+
+Vue.config.productionTip = false
 
 Vue.mixin({
   methods: {

@@ -7,6 +7,7 @@ export default {
     }
   },
   render (h, context) {
+    console.log(this.to)
     let to = this.to
     let isExternal = to.external
 

@@ -14,6 +14,7 @@ const getters = {
     }
   },
   name: (state: IRootState) => state.user.userInfo.name,
-  errorLogs: (state: IRootState) => state.errorLog.logs
+  errorLogs: (state: IRootState) => state.errorLog.logs,
+  menus: (state: IRootState) => state.user.menus
 }
 export default getters

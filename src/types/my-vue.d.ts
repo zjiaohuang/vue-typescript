@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { MyPromise } from '@/api/BaseRequestResult';
+import { MyPromise } from '@/api/BaseRequestResult'
 import { AxiosInstance } from 'axios'
 import { RawLocation } from 'vue-router'
 import { Message } from 'element-ui'

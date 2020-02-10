@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import ImgCropper, { GetCroppedCanvasOptions } from '@/components/ImgCropper/index.vue'
+import ImgCropper from '@/components/ImgCropper/index.vue'
 import lrz from 'lrz'
 
 @Component({
@@ -21,11 +21,13 @@ import lrz from 'lrz'
 })
 export default class CropperDemo extends Vue {
   private croppedImg: string = ''
-  created() { }
+
+  created() {
+  }
 
   handleClick() {
     let cropper: any = this.$refs.cropper
-    let croppedCanvasOptions:GetCroppedCanvasOptions = {
+    let croppedCanvasOptions = {
       width: 150,
       height: 200
     }

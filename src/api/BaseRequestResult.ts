@@ -24,16 +24,16 @@ export class BaseRequestResult<T = any> {
 
   /**
    * 创建网络请求结果基类
-   * @param {boolean} success
+   * @param {number} success
    * @param {unknown} resultJson
    * @memberof BaseRequestResult
    */
-  constructor(private success: boolean, private resultJson: unknown) {
-    this.success = success
+  constructor(resultCode: number, resultJson: unknown) {
+    this.code = resultCode
     this.result = <T>resultJson
   }
 
   public isSuccess(): boolean {
-    return this.success
+    return this.code === 200
   }
 }

@@ -9,13 +9,17 @@ const state: IUserState = {
   token: '',
   userInfo: {
     name: ''
-  }
+  },
+  menus: []
 }
 
 const mutations: MutationTree<IUserState> = {
   [SET_TOKEN]: (state, token: string) => {
     state.token = token
     storageUtil.sessionSet('token', token)
+  },
+  setMenus: (state, menus: Array<any>) => {
+    state.menus = menus
   }
 }
 
@@ -26,6 +30,9 @@ const actions: ActionTree<IUserState, IRootState> = {
   logout({ commit, state, dispatch }) {
     // TODO 调用退出接口后清除state
     commit(SET_TOKEN, null)
+  },
+  setMenus({ commit, state, dispatch }, menus: Array<any>) {
+    commit('setMenus', menus)
   }
 }
 

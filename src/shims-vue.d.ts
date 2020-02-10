@@ -8,3 +8,4 @@ declare module '*.vue' {
 declare module 'vue-navigation'
 declare module 'nprogress'
 declare module 'lrz'
+declare module 'mockjs'

@@ -129,6 +129,9 @@ export default class ImgCropper extends Vue {
     }
   }
 
+  /**
+  获取裁剪后图片base64字符串
+  */
   getCroppedImg(option?: GetCroppedCanvasOptions, quality?: any): string {
     return this.imgCropper.getCroppedCanvas(option).toDataURL('image/jpeg', quality)
   }

@@ -20,6 +20,7 @@
     "element-ui": "^2.7.0",
     "fuse.js": "^3.4.6",
     "lrz": "^4.9.40",
+    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "screenfull": "^5.0.0",
     "vue": "^2.6.10",

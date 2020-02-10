@@ -84,7 +84,11 @@ export interface IUserState extends IModuleState {
   /**
    *  用户信息
    */
-  userInfo: IUserInfo
+  userInfo: IUserInfo,
+  /**
+   * 菜单信息
+   */
+  menus?: any
 }
 
 /**

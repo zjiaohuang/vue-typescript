@@ -28,7 +28,7 @@ export default class PdfViewer extends Vue {
   }
 
   beforeDestroy() {
-    window.pdfPageChange = null
+    delete window.pdfPageChange
   }
 
   pageChange(currentPageNum: number, totalPageNum: number) {
