@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import dynamicLoad from '@/utils/dynamicLoadScript'
+import { requireRemoteScript } from '@/utils'
 
 import plugins from './plugins'
 import toolbar from './toolbar'
@@ -59,18 +59,13 @@ export default class RichEditor extends Vue {
   }
 
   mounted() {
-    dynamicLoad(tinymceCDN, this.handleLoaded, this.checkHasLoaded)
-  }
-
-  beforeDestroy() {
-    this.destroyTinymce()
-  }
-
-  handleLoaded(error: Error | null) {
-    if (error) {
-      console.log('异步加载tinymce异常', tinymceCDN)
-    }
-    this.initTinymce()
+    requireRemoteScript(tinymceCDN, (error?: Error) => {
+      if (error) {
+        console.error('异步加载tinymce异常', tinymceCDN)
+        return
+      }
+      this.initTinymce()
+    })
   }
 
   checkHasLoaded() {

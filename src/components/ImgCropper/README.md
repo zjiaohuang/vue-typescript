@@ -76,3 +76,40 @@ let defaultCropperOption = function (): CropperOption {
 ```
 
 #### ImgCropper Methods
+引用页面直接使用$refs调用
+|方法 | 说明 |
+|-----|----------------------------------|
+|getCroppedImg|获取裁剪后图片base64|
+|getCroppedBlob|获取裁剪后图片文件blob|
+
+##### getCroppedImg(option?: GetCroppedCanvasOptions, quality?: number): string
+获取裁剪后图片base64
+```typescript
+let croppedCanvasOptions:GetCroppedCanvasOptions = {
+  width: 150,
+  height: 200
+}
+this.croppedImg = cropper.getCroppedImg(croppedCanvasOptions, 0.7)
+```
+
+裁剪图片的一个canvas对象 options设置这个canvas的一些数据
+```typescript
+/**
+ * 图片的质量 默认low 还有medium、high
+ */
+type ImageSmoothingQuality = 'low' | 'medium' | 'high'
+
+interface GetCroppedCanvasOptions {
+  width?: number;
+  height?: number;
+  minWidth?: number;
+  minHeight?: number;
+  maxWidth?: number;
+  maxHeight?: number;
+  fillColor?: string;
+  imageSmoothingEnabled?: boolean;
+  imageSmoothingQuality?: ImageSmoothingQuality;
+}
+```
+
+##### getCroppedBlob(option?: GetCroppedCanvasOptions, type?: string, quality?: any): Promise<Blob | null>

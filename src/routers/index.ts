@@ -30,6 +30,11 @@ const router = new Router({
       name: 'pdf',
       component: () => import('@/views/example/pdf.vue'),
       meta: { title: 'pdf' }
+    }, {
+      path: 'cropperDemo',
+      name: 'cropperDemo',
+      component: () => import('@/views/example/cropper.vue'),
+      meta: { title: 'cropperDemo' }
     }]
   }, {
     path: '/demo',
