@@ -29,6 +29,7 @@ if (checkNeed()) {
         info,
         url: window.location.href
       })
+      console.error('vue异常')
       console.error(err, info)
     })
   }

@@ -1,5 +1,5 @@
 <template>
-  <PdfViewer pdfUrl="123" @pageNumChange="handlePageNumChange" />
+  <PdfViewer pdfUrl="123" @pageNumChange="handlePageNumChange" class="pdfView" />
 </template>
 
 <script lang="ts">
@@ -23,4 +23,8 @@ export default class pdf extends Vue {
 }
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+.pdfView {
+  height 'calc(100vh - %s - 3px)' % $navBarHeight
+}
+</style>

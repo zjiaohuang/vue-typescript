@@ -117,6 +117,7 @@ export default class ImgCropper extends Vue {
       (imgCropper: any) => {
         let mergeOption = { ...defaultCropperOption(), ...this.option }
         let Cropper = imgCropper.default
+        console.log(this.$refs.img)
         this.imgCropper = new Cropper(this.$refs.img, mergeOption)
       }
     )
@@ -153,6 +154,11 @@ export default class ImgCropper extends Vue {
     display: block;
     /* This rule is very important, please don't ignore this */
     max-width: 100%;
+  }
+
+  .cropper-point.point-se {
+    width: 5px;
+    height: 5px;
   }
 }
 </style>

@@ -4,10 +4,12 @@ function obj2str(val: any): string {
 
 function str2obj(val: string | null): any {
   if (val && val.length > 0) {
-    try {
-      val = JSON.parse(val)
-    } catch (error) {
-      console.warn('从存储中获取数据转换成JSON异常，数据为:' + val, error)
+    if (val.startsWith('[') || val.startsWith('{')) {
+      try {
+        val = JSON.parse(val)
+      } catch (error) {
+        console.warn('从存储中获取数据转换成JSON异常，数据为:' + val, error)
+      }
     }
     return val
   } else {

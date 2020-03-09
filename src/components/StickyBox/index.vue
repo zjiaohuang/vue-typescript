@@ -19,6 +19,7 @@ export default class StickyBox extends Vue {
   @Prop({ required: false, default: '' }) className!: string
   @Prop({ required: false, default: 0 }) stickyTop!: number
   @Prop({ required: false, default: defualtZIndex }) zIndex!: number
+  @Prop({ required: false, default: false, type: Boolean }) hasContainer!: boolean
 
   private height: number | string = 'auto'
   private width: string | number = 0
@@ -71,8 +72,16 @@ export default class StickyBox extends Vue {
     const offsetTop = this.$el.getBoundingClientRect().top
     const offsetBottom = this.$el.getBoundingClientRect().bottom
     if (offsetTop <= this.stickyTop) {
-      this.sticky()
-      return
+      let needSticky = true
+      if (this.hasContainer) {
+        if (this.$parent.$el.getBoundingClientRect().bottom - 30 < 0) {
+          needSticky = false
+        }
+      }
+      if (needSticky) {
+        this.sticky()
+        return
+      }
     }
     this.handleReset()
   }

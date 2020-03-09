@@ -1,16 +1,10 @@
 <template>
-  <el-breadcrumb
-    class="app-breadcrumb"
-    separator="/"
-  >
-    <!-- <transition-group name="breadcrumb"> -->
-    <el-breadcrumb-item
-      v-for="(item) in levelList"
-      :key="item.path"
-    >
-      <span class="no-redirect">{{ item.meta.title }}</span>
-    </el-breadcrumb-item>
-    <!-- </transition-group> -->
+  <el-breadcrumb class="app-breadcrumb" separator="/">
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item v-for="(item) in levelList" :key="item.path">
+        <span class="no-redirect">{{ item.meta.title }}</span>
+      </el-breadcrumb-item>
+    </transition-group>
   </el-breadcrumb>
 </template>
 

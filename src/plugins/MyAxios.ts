@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import { PluginObject } from 'vue'
+import { Loading } from 'element-ui'
 import { BaseRequestResult, MyPromise } from '@/api/BaseRequestResult'
 // import {appAdapter} from './axios/app'
 
@@ -8,6 +9,7 @@ import { BaseRequestResult, MyPromise } from '@/api/BaseRequestResult'
 
 const myAxios: PluginObject<any> = {
   reqCount: 0,
+  autoCloseLoading: true,
   install(Vue: any, option: any) {
     let axiosDefualtOpts = {
       headers: {
@@ -46,6 +48,9 @@ const myAxios: PluginObject<any> = {
         window.eventBus.$emit('ajax.request.error', error)
       }
       myAxios.reqCount--
+      if (myAxios.reqCount === 0 && myAxios.autoCloseLoading) {
+        Loading.service({}).close()
+      }
       return Promise.reject({
         error: error,
         isLogicError: false,
@@ -59,10 +64,15 @@ const myAxios: PluginObject<any> = {
      */
     service.interceptors.response.use(response => {
       // closeLoadingToast()
-      // 访问cabala会存入response.data.data,在拦截器处理下
       let responseData
       if (response.data.data && typeof (response.data.data) === 'string') {
-        responseData = JSON.parse(response.data.data)
+        try {
+          let data = JSON.parse(response.data.data)
+          if (typeof data === 'object') {
+            responseData = data
+          }
+        } catch (e) {
+        }
       } else {
         responseData = response.data
       }
@@ -71,6 +81,9 @@ const myAxios: PluginObject<any> = {
       response.data = requestResult
 
       myAxios.reqCount--
+      if (myAxios.reqCount === 0 && myAxios.autoCloseLoading) {
+        Loading.service({}).close()
+      }
       return response
     }, error => {
       // closeLoadingToast()
@@ -112,6 +125,13 @@ const myAxios: PluginObject<any> = {
           data: data
         }
         return service(_opt)
+      },
+      unableAutoCloseLoading() {
+        myAxios.autoCloseLoading = false
+      },
+      autoCloseLoading() {
+        Loading.service({}).close()
+        myAxios.autoCloseLoading = true
       }
     }
   }

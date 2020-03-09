@@ -7,6 +7,8 @@ import router from './routers'
 import store from './store'
 import myAxios from './plugins/MyAxios'
 
+import * as directives from '@/directives'
+
 import './utils/error-log'
 import './api/mock/index'
 
@@ -29,10 +31,9 @@ Vue.config.productionTip = false
 Vue.mixin({
   methods: {
     doPush(url: RawLocation) {
-      // this.$router.push(url).catch(() => {
+      this.$router.push(url).catch(() => {
 
-      // })
-      this.$router.push(url)
+      })
     },
     doBack(n: number = -1) {
       this.$router.go(n)

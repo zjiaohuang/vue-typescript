@@ -87,7 +87,7 @@ export function requireRemoteScript(src: string, callback: (...args: any[]) => v
  */
 export function getDpr() {
   const getParam = (name: string, str: string | null) => {
-    if (!!str) {
+    if (str) {
       const reg = new RegExp(`(^|,)${name}=([^,]*)(,|$)`, 'i')
       const r = str.match(reg)
       if (r != null) {

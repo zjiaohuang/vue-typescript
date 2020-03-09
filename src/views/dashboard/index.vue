@@ -3,6 +3,7 @@
     首页
     <rich-editor v-model="test" />
     {{test}}
+    {{obj.a}}
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import RichEditor from '@/components/RichEditor/index.vue'
   }
 })
 export default class Dashboard extends Vue {
+  private obj: number = 0
   private test: string = '<b>你好</b>'
 }
 </script>

@@ -161,7 +161,19 @@ get key() {
 
 当你子组件使用了 `scoped` 但在父组件又想修改子组件的样式可以 通过 `>>>`或`/deep/` 来实现。
 
-
+### 变量使用
+- 普通使用
+- 计算使用
+```css
+.fixed-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  height 'calc(100vh - %s)' % $sideBarWidth
+  transition: width 0.28s;
+}
+```
 
 ## Ajax请求
 
@@ -375,3 +387,6 @@ export default class SidebarItem extends Vue {
 
 }
 ```
+
+
+## 遇到问题
