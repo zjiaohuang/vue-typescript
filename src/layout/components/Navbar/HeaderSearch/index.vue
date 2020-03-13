@@ -64,6 +64,7 @@ export default {
       this.search = ''
       this.options = []
       this.$nextTick(() => {
+        window.eventBus.$emit('selected.seach.menu', val.id)
         this.show = false
       })
     },
@@ -98,7 +99,8 @@ export default {
 
         const data = {
           path: router.path ? path.resolve(basePath, router.path) : null,
-          title: [...prefixTitle]
+          title: [...prefixTitle],
+          id: router.id
         }
 
         if (router.name) {

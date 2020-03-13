@@ -1,7 +1,7 @@
-<!--https://v-charts.js.org/#/-->
+<!-- https://v-charts.js.org/#/ -->
 <template>
   <div>
-    <ve-line :data="chartData" width="500px"></ve-line>
+    <ve-line :data="chartData" width="500px" :settings="chartSettings" :xAxis="xAxis" :yAxis="yAxis"></ve-line>
   </div>
 </template>
 
@@ -17,6 +17,16 @@ import VeLine from 'v-charts/lib/line.common'
   }
 })
 export default class ChartsDemo extends Vue {
+  private xAxis = {
+    type: 'category',
+    boundaryGap: false
+  }
+  private yAxis = {
+    type: 'value',
+    axisLine: {
+      axisTick: true
+    }
+  }
   private chartData: { [key: string]: any } = {
     columns: ['日期', '访问用户', '下单用户', '下单率'],
     rows: [

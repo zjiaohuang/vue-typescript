@@ -6,6 +6,7 @@ import intercept from './intercept'
 import routerMap from './routerMap'
 
 import demo from './modules/demo'
+import system from './modules/system'
 
 routerMap.Layout = Layout
 routerMap['404'] = () => import(/* webpackChunkName: "404" */ '../views/404.vue')
@@ -36,14 +37,14 @@ const router = new Router({
   },
   routes: [{
     path: '/login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/login/index.vue')
+    component: () => import('../views/login/index.vue')
   }, {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+      component: () => import('@/views/dashboard/index.vue'),
       name: 'dashboard',
       meta: { title: '首页', icon: 'dashboard' }
     }]
@@ -53,6 +54,13 @@ const router = new Router({
     meta: { title: '例子' },
     children: [
       ...demo
+    ]
+  }, {
+    path: '/system',
+    component: routerMap.Layout,
+    meta: { title: '系统管理' },
+    children: [
+      ...system
     ]
   }]
 })

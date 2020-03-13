@@ -388,5 +388,6 @@ export default class SidebarItem extends Vue {
 }
 ```
 
+## 基础功能
 
-## 遇到问题
+# 常见问题

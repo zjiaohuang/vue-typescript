@@ -21,6 +21,16 @@ export default class Sidebar extends Vue {
   private menus: Array<any> = []
   private activeMenuId: any = ''
 
+  // get activeMenuId():string {
+  //   const route = this.$route
+  //   const { meta, path } = route
+  //   // if set path, the sidebar will highlight the path you set
+  //   if (meta.activeMenu) {
+  //     return meta.activeMenu
+  //   }
+  //   return path
+  // }
+
   created() {
     // 查询服务端菜单数据
     reqMenusFun(this, {}).then((response) => {
@@ -30,6 +40,10 @@ export default class Sidebar extends Vue {
       this.$store.dispatch('user/setMenus', response.data.result)
       // 配置默认选择菜单
       this.activeMenuId = this.menus[0].id
+    })
+
+    window.eventBus.$on('selected.seach.menu', (menuId:string) => {
+      this.activeMenuId = menuId
     })
   }
 
