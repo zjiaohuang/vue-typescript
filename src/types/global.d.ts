@@ -2,6 +2,8 @@
 // declare var window: Window
 declare var document: Document
 
+declare type DeviceType = 'Mobile' | 'Desktop'
+
 // localstorage存储数据key
 declare type localKey = '1' | '2'
 

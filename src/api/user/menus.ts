@@ -1,22 +1,34 @@
-import Vue from 'vue'
-import { MyPromise } from '@/api/BaseRequestResult'
+import { request } from '@/plugins/MyAxios'
+import { MyPromise } from '../BaseRequestResult'
 
-interface Menus {
-
+/**
+* 后台定义菜单类型
+*/
+export interface IAppRouter {
+ name: string,
+ path: string,
+ meta?: {
+   icon?: string
+   title: string,
+   cache?: boolean
+ },
+ children?: Array<IAppRouter>,
+ component: string | any
 }
 
-interface TestDto {
-  xx?: string
+export interface Menus extends IAppRouter {
+  id: string
+}
+
+interface UserMenuDto {
+  platform?: 'app' | 'web' | 'pad' | 'admin'
 }
 
 /**
- * 查询服务端菜单配置
- *
- * @export
- * @param {Vue} component
- * @param {TestDto} [param={}]
- * @returns {MyPromise<Menus>}
+ * 查询用户做实用平台菜单配置
+ * @param {UserMenuDto} [param={}]
+ * @returns {MyPromise<Array<Menus>>}
  */
-export function reqMenusFun(component: Vue, param: TestDto = {}): MyPromise<Array<Menus>> {
-  return component.$http.post<Array<Menus>>('/menus', param, null)
+export function reqMenusFun(param: UserMenuDto = { platform: 'admin' }): MyPromise<Menus[]> {
+  return request.post<Array<Menus>>('/user/menus', param, null)
 }

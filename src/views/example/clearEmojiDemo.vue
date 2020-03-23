@@ -27,6 +27,10 @@ export default class ClearEmojiDemo extends Vue {
   private a: string = '测试'
   private b: string = '123'
   private input: string = ''
+
+  created() {
+    console.log(11111111)
+  }
 }
 </script>
 

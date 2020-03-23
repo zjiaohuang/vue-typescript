@@ -10,7 +10,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import SidebarItem from './SidebarItem.vue'
 
-import { reqMenusFun } from '@/api/user/menus'
+import { reqMenusFun, Menus } from '@/api/user/menus'
 
 @Component({
   components: {
@@ -18,31 +18,27 @@ import { reqMenusFun } from '@/api/user/menus'
   }
 })
 export default class Sidebar extends Vue {
-  private menus: Array<any> = []
+  private menus: Array<Menus> = []
   private activeMenuId: any = ''
-
-  // get activeMenuId():string {
-  //   const route = this.$route
-  //   const { meta, path } = route
-  //   // if set path, the sidebar will highlight the path you set
-  //   if (meta.activeMenu) {
-  //     return meta.activeMenu
-  //   }
-  //   return path
-  // }
 
   created() {
     // 查询服务端菜单数据
-    reqMenusFun(this, {}).then((response) => {
-      console.log(response.data.result)
-      this.menus = this.menus.concat(response.data.result)
-      // 将菜单数据存储到vuex中方便菜单查询组件使用
-      this.$store.dispatch('user/setMenus', response.data.result)
-      // 配置默认选择菜单
-      this.activeMenuId = this.menus[0].id
+    reqMenusFun({}).then((response) => {
+      const { path } = this.$route
+      if (response.data.isSuccess()) {
+        this.menus = this.menus.concat(response.data.result)
+        // 将菜单数据存储到vuex中方便菜单查询组件使用
+        this.$store.dispatch('user/setMenus', response.data.result)
+        // 配置默认选择菜单
+        if (this.menus[0].path === path || path === '/dashboard') {
+          this.activeMenuId = this.menus[0].id
+        } else {
+          this.activeMenuId = this.findActiveMenu(this.menus, path)
+        }
+      }
     })
 
-    window.eventBus.$on('selected.seach.menu', (menuId:string) => {
+    window.eventBus.$on('selected.seach.menu', (menuId: string) => {
       this.activeMenuId = menuId
     })
   }
@@ -53,6 +49,21 @@ export default class Sidebar extends Vue {
   isCollapse() {
     // return true
     return !this.$store.state.app.sidebar.opened
+  }
+
+  findActiveMenu(menus: any[], path: string): string | null {
+    for (let i = 0; i < menus.length; i++) {
+      if (menus[i].path === path) {
+        return menus[i].id
+      }
+      if (menus[i].children) {
+        let id = this.findActiveMenu(menus[i].children, path)
+        if (id) {
+          return id
+        }
+      }
+    }
+    return null
   }
 }
 </script>

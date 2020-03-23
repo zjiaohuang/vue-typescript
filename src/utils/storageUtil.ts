@@ -46,7 +46,7 @@ interface IStorageUtil {
    */
   sessionGet(key: sessionKey): any | string | null,
 
-  sessionRemove(key: string): void
+  sessionRemove(key: sessionKey): void
 }
 
 const storageUtil: IStorageUtil = {

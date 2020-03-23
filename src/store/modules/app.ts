@@ -1,5 +1,5 @@
 import { Module, MutationTree, ActionTree } from 'vuex'
-import { DeviceType, IAppState, IRootState } from '../moduleType'
+import { IAppState, IRootState } from '../storeModel'
 
 export const TOGGLE_SIDEBAR: string = 'TOGGLE_SIDEBAR'
 export const CLOSE_SIDEBAR: string = 'CLOSE_SIDEBAR'
@@ -7,7 +7,7 @@ export const TOGGLE_DEVICE: string = 'TOGGLE_DEVICE'
 export const SET_SIZE: string = 'SET_SIZE'
 
 const state: IAppState = {
-  device: DeviceType.Desktop,
+  device: 'Desktop',
   sidebar: {
     opened: true,
     withoutAnimation: true

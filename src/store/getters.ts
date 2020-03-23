@@ -1,5 +1,5 @@
 import storageUtil from '@/utils/storageUtil'
-import { IRootState } from './moduleType'
+import { IRootState } from './storeModel'
 
 const getters = {
   sidebar: (state: IRootState) => state.app.sidebar,

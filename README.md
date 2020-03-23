@@ -376,7 +376,6 @@ declare type sessionKey = 'key' | 'token'
 
 
 ## Typescript注意事项
-
 ### 组件递归调用
 组件递归调用组件必须有名称否则编译会出现解析异常
 ```
@@ -389,5 +388,26 @@ export default class SidebarItem extends Vue {
 ```
 
 ## 基础功能
+
+### 数据字典
+**（1）引入组件**
+
+```typescript
+import Dict from '@/components/Dict'
+
+@Component({
+  mixins: [Dict]
+})
+```
+**（2）声明获取字典名**
+
+> <font color=red>dict 和 keys 固定</font>
+```typescript
+private dict: any = { keys: ['sex'] }
+```
+**（3）使用字典**
+```vue
+<span v-for="item in dict.sex" :key="item.id">{{item.label}}</span>
+```
 
 # 常见问题

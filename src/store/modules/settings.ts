@@ -1,5 +1,5 @@
 import { Module, MutationTree, ActionTree } from 'vuex'
-import { MyModule, ISettingsState, IRootState } from '../moduleType'
+import { ISettingsState, IRootState } from '../storeModel'
 
 const state:ISettingsState = {
   showSettings: false,

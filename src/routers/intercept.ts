@@ -19,7 +19,18 @@ function routerBeforeEach(to: Route, from: Route, next: Function) {
   } else {
     const token = store.getters.token
     if (token) {
-      next()
+      if (!store.getters.name) {
+        store.dispatch('user/userInfo').then(res => { // 拉取user_info
+          next({ ...to, replace: true })
+        }).catch((err) => {
+          console.log(err)
+          store.dispatch('user/logout').then(() => {
+            location.reload() // 为了重新实例化vue-router对象 避免bug
+          })
+        })
+      } else {
+        next()
+      }
     } else {
       // other pages that do not have permission to access are redirected to the login page.
       next({ path: `/login?redirect=${to.path}`, replace: true })

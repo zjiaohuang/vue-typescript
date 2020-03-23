@@ -1,5 +1,5 @@
 import { Module, MutationTree, ActionTree } from 'vuex'
-import { IErrorState, IRootState } from '../moduleType'
+import { IErrorState, IRootState } from '../storeModel'
 
 const state:IErrorState = {
   logs: []

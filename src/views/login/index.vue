@@ -18,7 +18,7 @@
       <el-tooltip v-model="capsTooltip" content="大写锁定" placement="right" manual>
         <el-form-item prop="password">
           <span class="svg-container">
-            <svg  class="svg-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+            <svg class="svg-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="128" height="128">
               <path d="M870.4 354.576H716.8v-42.88c0-72.32-26.464-193.304-204.8-193.304-185.16 0-204.8 135.048-204.8 193.296v42.888H153.6v-42.88C153.6 122.248 294.384 0 512 0c217.616 0 358.4 122.248 358.4 311.688v42.888zm-256 314.848c0-43.52-46.104-78.656-102.4-78.656-56.296 0-102.4 35.136-102.4 78.656 0 29.456 20.536 54.464 51.256 67.816v89.64c0 21.744 23 39.696 51.2 39.696 28.192 0 51.2-17.952 51.2-39.696v-89.64c30.664-13.352 51.144-38.36 51.144-67.816zM1024 512v393.608C1024 970.872 954.84 1024 870.4 1024H153.6C69.208 1024 0 970.872 0 905.608V512c0-65.224 69.16-118.392 153.6-118.392h716.8c84.44 0 153.6 53.168 153.6 118.392z" />
             </svg>
           </span>
@@ -36,8 +36,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator'
-import routerMap from '@/routers/routerMap'
+import { Component, Vue, Provide, Prop } from 'vue-property-decorator'
 
 @Component
 export default class EroorPage extends Vue {
@@ -103,10 +102,14 @@ export default class EroorPage extends Vue {
   }
 
   onHandleLogin() {
-    this.$store.commit('user/SET_TOKEN', 1)
+    // this.$store.commit('user/SET_TOKEN', 1)
     let redirect: any = this.$route.query['redirect']
 
-    this.doPush(redirect || '/')
+    this.$store.dispatch('user/login', {}).then(() => {
+      this.doPush(redirect || '/')
+    }).catch(() => {
+
+    })
   }
 }
 </script>

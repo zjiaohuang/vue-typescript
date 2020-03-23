@@ -3,13 +3,9 @@ import Router, { Route } from 'vue-router'
 
 import Layout from '../layout/index.vue'
 import intercept from './intercept'
-import routerMap from './routerMap'
 
 import demo from './modules/demo'
 import system from './modules/system'
-
-routerMap.Layout = Layout
-routerMap['404'] = () => import(/* webpackChunkName: "404" */ '../views/404.vue')
 
 Vue.use(Router)
 
@@ -50,14 +46,14 @@ const router = new Router({
     }]
   }, {
     path: '/demo',
-    component: routerMap.Layout,
+    component: Layout,
     meta: { title: '例子' },
     children: [
       ...demo
     ]
   }, {
     path: '/system',
-    component: routerMap.Layout,
+    component: Layout,
     meta: { title: '系统管理' },
     children: [
       ...system
