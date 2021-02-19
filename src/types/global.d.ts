@@ -2,6 +2,9 @@
 // declare var window: Window
 declare var document: Document
 
+declare module 'file-saver'
+declare module 'clipboard'
+
 declare type DeviceType = 'Mobile' | 'Desktop'
 
 // localstorage存储数据key

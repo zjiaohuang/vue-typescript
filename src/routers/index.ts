@@ -6,6 +6,7 @@ import intercept from './intercept'
 
 import demo from './modules/demo'
 import system from './modules/system'
+import tools from './modules/tools'
 
 Vue.use(Router)
 
@@ -57,6 +58,13 @@ const router = new Router({
     meta: { title: '系统管理' },
     children: [
       ...system
+    ]
+  }, {
+    path: '/tools',
+    component: Layout,
+    meta: { title: '系统工具' },
+    children: [
+      ...tools
     ]
   }]
 })

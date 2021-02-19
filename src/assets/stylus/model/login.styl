@@ -9,7 +9,9 @@ $cursor = #fff;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  // background-color: $bg;
+  background-image: url('~@/assets/imgs/login-background.webp');
+  background-size: 100% 100%;
   overflow: hidden;
 
   .login-form {
@@ -96,5 +98,14 @@ $cursor = #fff;
 @supports (-webkit-mask: none) and ( not (cater-color: $cursor) ) {
   .login-container .el-input input {
     color: $cursor;
+  }
+}
+
+@media only screen and (max-width: 1024px){
+  .login-container{
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position: center center;
+    background-size: cover;
   }
 }

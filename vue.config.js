@@ -112,6 +112,13 @@ module.exports = {
                 priority: 20,
                 test: /[\\/]node_modules[\\/]_?element-ui(.*)/,
                 chunks: 'initial'
+              },
+              commons: {
+                name: 'chunk-commons',
+                test: resolve('src/components'), // can customize your rules
+                minChunks: 3, //  minimum common number
+                priority: 5,
+                reuseExistingChunk: true
               }
             }
           })

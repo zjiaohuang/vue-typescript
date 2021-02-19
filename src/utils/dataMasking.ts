@@ -1,5 +1,8 @@
 // 脱敏函数
 
+/**
+ * 手机号脱敏
+ */
 export function mobileMasking(mobile: string): string {
   let newMobile: string = mobile
   if (mobile.length > 7) {
@@ -8,6 +11,9 @@ export function mobileMasking(mobile: string): string {
   return newMobile
 }
 
+/**
+ * 邮箱脱敏
+ */
 export function emailMasking(email: string): string {
   let newEmail = email
   if (String(email).indexOf('@') > 0) {
@@ -23,6 +29,9 @@ export function emailMasking(email: string): string {
   return newEmail
 }
 
+/**
+ * 银行卡脱敏
+ */
 export function bankCardMasking(bankCard: string): string {
   return ''
 }

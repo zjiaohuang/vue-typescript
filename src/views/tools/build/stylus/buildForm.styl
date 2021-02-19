@@ -1,0 +1,167 @@
+$selectedColor = #f6f7ff;
+$lighterBlue = #409EFF;
+
+.container {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 50px);
+
+  >>> .scrollbar-wrapper{
+    overflow-x: hidden !important;
+  }
+}
+
+.hasTagsView .app-main {
+  min-height: calc(100vh - 84px);
+}
+
+.components-list {
+  padding: 8px;
+  box-sizing: border-box;
+  height: 100%;
+
+  .components-item {
+    display: inline-block;
+    width: 48%;
+    margin: 1%;
+    transition: transform 0ms !important;
+  }
+}
+
+.components-draggable {
+  padding-bottom: 20px;
+}
+
+.components-title {
+  font-size: 14px;
+  color: #222;
+  margin: 6px 2px;
+
+  .svg-icon {
+    color: #666;
+    font-size: 18px;
+  }
+}
+
+.components-body {
+  padding: 8px 10px;
+  background: $selectedColor;
+  font-size: 12px;
+  cursor: move;
+  border: 1px dashed $selectedColor;
+  border-radius: 3px;
+
+  .svg-icon {
+    color: #777;
+    font-size: 15px;
+  }
+
+  &:hover {
+    border: 1px dashed #787be8;
+    color: #787be8;
+
+    .svg-icon {
+      color: #787be8;
+    }
+  }
+}
+
+.left-board {
+  width: 260px;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  // height: 100vh;
+}
+
+.left-scrollbar {
+  height: calc(100vh - 92px);
+  overflow: hidden;
+}
+
+.center-scrollbar {
+  height: calc(100vh - 92px)
+  overflow: hidden;
+  border-left: 1px solid #f1e8e8;
+  border-right: 1px solid #f1e8e8;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+}
+
+.center-board {
+  height: calc(100vh - 50px);
+  width: auto;
+  margin: 0 360px 0 260px;
+  box-sizing: border-box;
+}
+
+.empty-info {
+  position: absolute;
+  top: 46%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 18px;
+  color: #ccb1ea;
+  letter-spacing: 4px;
+}
+
+.action-bar {
+  position: relative;
+  height: 42px;
+  text-align: right;
+  padding: 0 15px;
+  box-sizing: border-box;
+  border: 1px solid #f1e8e8;
+  border-top: none;
+  border-left: none;
+
+  .delete-btn {
+    color: #F56C6C;
+  }
+}
+
+.logo-wrapper {
+  position: relative;
+  height: 39px;
+  background: #fff;
+  border-bottom: 1px solid #f1e8e8;
+  box-sizing: border-box;
+}
+
+.logo {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  line-height: 30px;
+  color: #00afff;
+  font-weight: 600;
+  font-size: 17px;
+  white-space: nowrap;
+
+  > img {
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+  }
+
+  .github {
+    display: inline-block;
+    vertical-align: sub;
+    margin-left: 15px;
+
+    > img {
+      height: 22px;
+    }
+  }
+}
+
+.center-board-row {
+  padding: 12px 12px 15px 12px;
+  box-sizing: border-box;
+
+  & > .el-form {
+    // 69 = 12+15+42
+    height: calc(100vh - 119px);
+  }
+}

@@ -16,12 +16,12 @@ plugins:
   #     param1: 1
   #     param2: 2
 
+- removeViewBox: false
 - removeUselessDefs: true
 - removeEmptyContainers: true
 
 - removeAttrs:
     attrs:
-      - 'fill'
       - 'fill-rule'
       - 'defs'
       - 'class'

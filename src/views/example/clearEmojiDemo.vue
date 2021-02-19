@@ -3,7 +3,7 @@
     输入框去除
     <input v-model="a" v-no-emoji /> {{a}}
     <br />
-    textarea去除
+    textarea去除1
     <textarea v-model="b" v-no-emoji>
     </textarea>
     {{b}}
@@ -11,6 +11,39 @@
     第三方ui去除
     <el-input v-model="input" placeholder="请输入内容" v-no-emoji></el-input>
     {{input}}
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <button type="button" @click="test">跳转</button>
   </div>
 </template>
 
@@ -30,6 +63,10 @@ export default class ClearEmojiDemo extends Vue {
 
   created() {
     console.log(11111111)
+  }
+
+  test() {
+    this.$router.push('/demo/chartsDemo2')
   }
 }
 </script>

@@ -124,6 +124,7 @@ export default {
       return res
     },
     querySearch (query) {
+      console.log('开始查询')
       if (query !== '') {
         this.options = this.fuse.search(query)
       } else {

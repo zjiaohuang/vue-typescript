@@ -3,6 +3,7 @@
     <img-cropper ref="cropper" src="./img/typescript.jpg" :option="{dragMode:'move', aspectRatio:3/4}" />
     <div>
       <el-button type="primary" @click="handleClick">确定</el-button>
+      <child-test />
     </div>
     <img :src="croppedImg" />
   </div>
@@ -11,12 +12,16 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import ImgCropper from '@/components/ImgCropper/index.vue'
+
+import childTest from './components/childTest.vue'
+
 import lrz from 'lrz'
 
 @Component({
   name: 'CropperDemo',
   components: {
-    ImgCropper
+    ImgCropper,
+    childTest
   }
 })
 export default class CropperDemo extends Vue {
@@ -26,6 +31,9 @@ export default class CropperDemo extends Vue {
   }
 
   handleClick() {
+    this.$http.post('/user/login', {}, null)
+    console.log(this)
+
     let cropper: any = this.$refs.cropper
     let croppedCanvasOptions = {
       width: 150,

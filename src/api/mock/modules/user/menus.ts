@@ -44,19 +44,19 @@ export default [{
   }, {
     id: '10002',
     name: '菜单管理',
-    path: '/demo/pdf2'
+    path: '/system/menuList'
   }, {
     id: '10003',
     name: '角色管理',
-    path: '/demo/pdf3'
+    path: '/system/roleList'
   }]
 }, {
   id: '20000',
-  name: '系统监控管理',
+  name: '系统工具',
   icon: 'el-icon-s-tools',
   children: [{
     id: '20001',
-    name: '用户管理',
-    path: '/system/userList1'
+    name: '表单构建',
+    path: '/tools/buildForm'
   }]
 }]

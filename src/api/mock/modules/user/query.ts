@@ -1,0 +1,4 @@
+export default {
+  total: 2,
+  content: [{ 'id': 3, 'username': 'test', 'nickName': '测试', 'sex': '男', 'avatar': '5cc11bd8092f1-20200318053234915.jpg', 'email': 'test@eladmin.net', 'phone': '17777777777', 'enabled': false, 'lastPasswordResetTime': 1554081324000, 'roles': [{ 'id': 2, 'name': '普通用户', 'level': 2, 'dataScope': '本级' }], 'job': { 'id': 12, 'name': '软件测试' }, 'dept': { 'id': 2, 'name': '研发部' }, 'deptId': null, 'createTime': 1545912326000 }, { 'id': 1, 'username': 'admin', 'nickName': '管理员', 'sex': '男', 'avatar': '綦江人民政府-2020032510135515.png', 'email': 'zhengjie@tom.com', 'phone': '18888888888', 'enabled': true, 'lastPasswordResetTime': 1558172061000, 'roles': [{ 'id': 1, 'name': '超级管理员', 'level': 1, 'dataScope': '全部' }], 'job': { 'id': 11, 'name': '全栈开发' }, 'dept': { 'id': 2, 'name': '研发部' }, 'deptId': null, 'createTime': 1534986716000 }]
+}

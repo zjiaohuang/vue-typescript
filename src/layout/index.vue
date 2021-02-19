@@ -1,13 +1,7 @@
 <template>
-  <div
-    :class="classObj"
-    class="app-wrapper"
-  >
+  <div :class="classObj" class="app-wrapper">
     <sidebar class="sidebar-container" />
-    <div
-      :class="{hasTagsView:needTagsView}"
-      class="main-container"
-    >
+    <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
         <!-- <tags-view v-if="needTagsView" /> -->
@@ -77,7 +71,7 @@ export default class Layout extends Vue {
   top: 0;
   right: 0;
   z-index: 9;
-  width 'calc(100vh - %s)' % $sideBarWidth
+  width: 'calc(100vh - %s)' % $sideBarWidth;
   transition: width 0.28s;
 }
 

@@ -19,7 +19,7 @@ let axiosDefualtOpts: AxiosRequestConfig = {
   },
   timeout: 50000,
   transformRequest: [
-    function (data: JSON) {
+    function (data: JSON, headers: any) {
       return 'JSON=' + JSON.stringify(data)
     }]
 }

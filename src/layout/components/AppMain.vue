@@ -1,9 +1,6 @@
 <template>
   <section class="app-main">
-    <transition
-      name="fade-transform"
-      mode="out-in"
-    >
+    <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
         <router-view :key="key" />
       </keep-alive>
@@ -25,3 +22,13 @@ export default class AppMain extends Vue {
   }
 }
 </script>
+
+<style lang="stylus">
+.app-main {
+  min-height: calc(100vh - 50px);
+}
+
+.hasTagsView .app-main {
+  min-height: calc(100vh - 84px);
+}
+</style>

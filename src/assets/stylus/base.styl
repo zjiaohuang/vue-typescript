@@ -9,7 +9,7 @@ html,body,#app {
 }
 
 label {
-  font-weight: 700;
+  // font-weight: 700;
 }
 
 *,
@@ -84,7 +84,14 @@ div:focus {
 
 //main-container全局样式
 .app-container {
-  padding: 20px;
+  padding: 15px;
+
+  .app-query-container{
+    padding-bottom: 10px;
+  }
+  .app-query-item{
+    margin-right: 8px
+  }
 }
 
 .components-container {
@@ -159,4 +166,11 @@ div:focus {
     vertical-align: -.15em;
     fill: currentColor;
     overflow: hidden;
+}
+
+.el-table__fixed-right{
+  top: 0.5px !important
+  th:last-child{
+    border-bottom: 1px solid #EBEEF5;
+  }
 }

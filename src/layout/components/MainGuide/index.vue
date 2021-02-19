@@ -12,7 +12,11 @@ export default class MainGuide extends Vue {
   private driver: any
   doGuide() {
     if (!this.driver) {
-      import(/* webpackChunkName: "chunk-driver" */ 'driver.js').then(
+      import(
+        /* webpackMode: "lazy" */
+        /* webpackPrefetch: true */
+        /* webpackPreload: true */
+        'driver.js').then(
         (driver: any) => {
           let Driver = driver.default
           this.driver = new Driver()

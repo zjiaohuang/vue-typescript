@@ -49,8 +49,10 @@ Vue.mixin({
 // 接收处理全局事件使用
 window.eventBus = new Vue()
 
-new Vue({
+let vm = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+window['vm'] = vm
